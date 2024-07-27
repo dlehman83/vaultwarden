@@ -66,7 +66,7 @@ pub async fn invite(
     )
     .await;
 
-    if CONFIG.mail_enabled() {
+    if CONFIG.mail_enabled() && !CONFIG.sso_organizations_invite_autoaccept() {
         match user_org_status {
             UserOrgStatus::Invited => {
                 mail::send_invite(
