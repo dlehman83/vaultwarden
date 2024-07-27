@@ -1,5 +1,5 @@
 #!/bin/sh
-
+echo "dlehman83 test 1"
 if [ -r /etc/vaultwarden.sh ]; then
     . /etc/vaultwarden.sh
 elif [ -r /etc/bitwarden_rs.sh ]; then

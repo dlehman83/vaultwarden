@@ -26,6 +26,11 @@ pub async fn invite(
         user_org_status = UserOrgStatus::Accepted;
     }
 
+    // automatically accept existing users if auto accept invite is enabled
+    if !user.password_hash.is_empty() && CONFIG.sso_organizations_invite_autoaccept() {
+        user_org_status = UserOrgStatus::Accepted;
+    }
+
     let mut new_uo = UserOrganization::new(user.uuid.clone(), org.uuid.clone(), Some(invited_by_email.clone()));
     new_uo.access_all = access_all;
     new_uo.atype = user_org_type as i32;
